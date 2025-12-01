@@ -1,0 +1,268 @@
+/* Base Styles & Typography */
+:root {
+    --primary-color: #5d5dff; /* A vibrant purple/blue for buttons */
+    --secondary-color: #6c757d; /* Grey for secondary actions */
+    --delete-color: #dc3545; /* Red for delete actions */
+    --background-light: #f4f7f6;
+    --panel-background: #ffffff;
+    --text-dark: #343a40;
+    --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background-light);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 95%;
+    max-width: 800px;
+    padding: 20px;
+    background: var(--panel-background);
+    border-radius: 12px;
+    box-shadow: var(--shadow-medium);
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+}
+
+h2 {
+    color: var(--text-dark);
+    font-size: 1.25em;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 8px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Control Inputs and Buttons */
+.palette-controls {
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+}
+
+.palette-controls input,
+.palette-controls button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    font-size: 1em;
+}
+
+.palette-controls input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.palette-controls button {
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.add-button, .save-button {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.add-button:hover, .save-button:hover {
+    background-color: #4a4aef;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-subtle);
+}
+
+/* Palette Panel - Editable and Saved */
+.palette-panel {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    margin-bottom: 15px;
+    position: relative;
+    box-shadow: var(--shadow-subtle);
+}
+
+/* Palette name inside the panel */
+.palette-panel-name {
+    position: absolute;
+    top: -10px; /* Position above the color blocks */
+    left: 10px;
+    font-weight: 600;
+    font-size: 0.9em;
+    padding: 2px 8px;
+    background: var(--panel-background);
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+/* Individual color boxes */
+.color-box {
+    position: relative;
+    min-height: 50px;
+    height: auto; /* Allow content to dictate height */
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    cursor: grab;
+}
+
+.color-box:hover {
+    transform: scale(1.005);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.color-box.selected {
+    border: 3px solid var(--delete-color); /* Highlight selected color */
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.6);
+}
+
+/* Variable name input */
+.color-name-input {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: 95%;
+    padding: 3px 6px;
+    font-size: 0.85em;
+    border-radius: 4px;
+    border: 1px solid #999;
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--text-dark);
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Show variable name on hover (and always for the saved palette text label) */
+.color-box:hover .color-name-input {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Actions below the Current Palette */
+.current-palette-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.action-button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.delete-button {
+    background-color: var(--delete-color);
+    color: white;
+    border: 1px solid var(--delete-color);
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.secondary-button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: 1px solid var(--secondary-color);
+}
+
+.secondary-button:hover {
+    background-color: #5a6268;
+}
+
+/* Saved Palettes Section */
+#savedPalettes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.palette-panel.saved-palette {
+    cursor: pointer;
+    padding-top: 50px; /* Space for the header */
+}
+
+.palette-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    background: #f8f9fa;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.palette-header h3 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.palette-header button {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
+/* Make color-box in saved palettes less draggable-looking */
+.palette-panel.saved-palette .color-box {
+    cursor: default;
+    margin: 5px 0;
+}
+
+/* Responsiveness (for small devices) */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.7em;
+    }
+
+    /* Stack inputs and buttons vertically on small screens */
+    .palette-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .current-palette-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

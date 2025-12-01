@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InkLoom - Palette Creator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎨 Color Palette Creator</h1>
+
+    <div class="palette-controls">
+        <input type="text" id="colorInput" placeholder="Enter HEX, RGB, or RGBA color">
+        <button onclick="addColor()" class="add-button">Add Color</button>
+        <input type="text" id="paletteName" placeholder="Palette Name">
+        <button onclick="savePalette()" class="save-button">Save Palette</button>
+    </div>
+
+    <h2>Current Palette (Editable)</h2>
+    <div id="currentPalette" class="palette-panel"></div>
+
+    <div class="current-palette-actions">
+        <button id="deleteSelectedColorBtn" class="action-button delete-button">Delete Selected Color</button>
+        <button id="cancelEditBtn" onclick="cancelEdit()" class="action-button secondary-button" style="display:none;">Cancel Edit</button>
+    </div>
+
+    <h2>Saved Palettes (Click to Edit)</h2>
+    <div id="savedPalettes"></div>
+
+</div>
+
+<script src="functions.js"></script>
+</body>
+</html>
