@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://astiche.github.io/color-palette-creator-web/sitemap.xml
